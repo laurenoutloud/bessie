@@ -1,0 +1,332 @@
+html{
+        height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: -webkit-radial-gradient(center bottom, ellipse cover, #A3B2FF, #003DFF);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* min-height: 600px; */
+}
+.site-title{
+    color: #fff;
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 20px;
+    text-shadow: 0 0 13px #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/*** Weather Elements ***/
+.rainy{
+    background-image: 
+    -webkit-radial-gradient(center bottom, ellipse cover, #A3B2FF, #717581);
+}
+.weather-element{
+    position: absolute;
+    transition-property: all;  
+    transition-duration: 1s; 
+}
+.sun{
+    width: 8em;
+    height: 8em;
+    background-image: 
+    -webkit-radial-gradient(center center, ellipse cover, #FFF4A3, #FFCC00);
+    box-shadow: 0 0 50px #fff;
+    border-radius: 4em;
+    right: 100px;
+    top: 100px;
+    display: block;
+}
+.sun.hidden{
+    top: -200px;
+}
+/*.sun:hover{
+    transform: scale(1.2,1.2); 
+}*/
+.cloud{
+    width: 200px;
+    height: 50px;
+    background: white;
+    border-radius: 30px;
+    margin-top: 50px;
+    top: 40px;
+    right: 100px;
+}
+.cloud.hidden{
+    right: -300px !important; /*Used to override the random values assigned by js*/
+}
+.cloud:after{
+    content: " ";  
+    width: 66px;  
+    height: 64px;  
+    background: white;  
+    display: block;  
+    position: relative;  
+    top: -97px;  
+    left: 89px;  
+    border-radius: 30px; 
+}
+.cloud:before{
+    content: " ";
+    width: 72px;
+    height: 70px;
+    background: white;
+    display: block;
+    position: relative;
+    top: -34px;
+    left: 40px;
+    border-radius: 30px;
+}
+.grass{
+    position: absolute;
+    bottom: 0;
+    height: 200px;
+    width: 100%;
+    background-image: 
+    -webkit-radial-gradient(center top, ellipse cover, #C0FFA3, #1E7E00);
+    border-radius: 400px 400px 0 0;
+    transform: perspective;
+    z-index: -10;
+}
+
+/*** Cow Elements ***/
+.cow{
+    left: 50%;
+    width: 414px;
+    height: 280px;
+    margin: 0 auto;
+    bottom: 200px;
+    margin-left: -212px;
+    position: absolute;
+}
+.cow-wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.face{
+    width: 100px;  
+    height: 130px;  
+    border-radius: 150px/100px;  
+    background: white;  
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    transition-property: all;         
+    transition-duration: 1s;
+}
+.face:hover{
+    transform: rotate(-360deg);
+}
+.eyes{
+    position: absolute;
+    width: 100px;
+    margin-top: 30px;
+    margin-left: 2px;
+}
+.eye{
+    width: 32px;
+    height: 32px;
+    float: left;
+    border-radius: 20px;
+    border: 2px solid #000;
+    margin: 6px;
+    transition-property: all;         
+    transition-duration: 1s;
+}
+.eye-left:hover{
+    transform: rotate(360deg);
+}
+.eye-right:hover{
+    transform: rotate(-360deg);
+}
+.pupil{
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 5px;
+    position: relative;
+    top: 20px;
+    left: 10px;
+    transition-property: all;         
+    transition-duration: .5s;
+}
+.pupil.startled{
+    top:12px;
+    left: 12px;
+}
+.snout{
+    width: 110px;
+    height: 50px;
+    background: pink;
+    margin-left: -5px;
+    position: relative;
+    top: 85px;
+    border-radius: 22px/19px;
+    transition-property: all;         
+    transition-duration: 0.5s;
+}
+.snout:hover{
+    transform: scale3d(1.2,1.2,1);
+}
+.nostril{
+    float: left;  
+    width: 20px;  
+    height: 20px;  
+    background: black;  
+}
+.nostril-left{
+    margin: 20px 30px 20px 20px;
+    border-radius: 10px 20px;
+}
+.nostril-right{
+    margin: 20px 0 20px 0;  
+    border-radius: 20px 10px;
+}
+.body{
+    width: 380px;
+    height: 200px;
+    border-radius: 80px 100px 150px 100px;
+    background: white;
+    left: 0;
+    position: absolute;
+    bottom: 20px;
+    overflow: hidden;
+    transition-property: all;         
+    transition-duration: 1s;
+}
+.spot{
+    background: #000;
+    position: absolute;
+}
+.spot-1{
+    width: 86px;
+    height: 71px;
+    border-radius: 50px/40px;
+}
+.spot-1:after {
+    width: 86px;
+    height: 71px;
+    border-radius: 50px/40px;
+    left: 21px;
+    top: -19px;
+    content: " ";
+    position: absolute;
+    background: #000;
+    display: block;
+}
+.spot-3{
+    width: 167px;  
+    height: 130px;  
+    border-radius: 80px/60px;
+    right: 0;
+    top: 100;
+}
+.spot-3:after {
+    width: 131px;
+    content: " ";
+    height: 130px;
+    width: 131px;
+    border-radius: 80px/60px;
+    right: -32;
+    top: -31;
+    display: block;
+    position: absolute;
+    background: #000;
+}
+.tongue{
+    width: 18px;
+    height: 32px;
+    position: absolute;
+    background-color: rgb(235, 126, 213);
+    display: block;
+    border-radius: 0 0 10px 10px;
+    bottom: 0;
+    left: 52px;
+    bottom: 0;
+    transition-property: all;  
+    transition-duration: 0.5s;
+}
+.tongue.out{
+    bottom: -20px;
+}
+.legs{
+    position: absolute;
+    bottom: 0;
+    left: 64px;
+}
+.leg{
+    background: white;
+    height: 70px;
+    width: 30px;
+    position: absolute;
+    transition-property: transform;  
+    transition-duration: 1s;
+}
+.leg-bl{
+    bottom: 0;
+    left: -30px;
+    z-index: -1;
+    border-radius: 14px 14px 0 0;
+}
+.leg-fl{
+    bottom: 0;
+    left: 186px;
+    z-index: -1;
+    border-radius: 14px 14px 0 0;
+}
+.leg-br{
+    bottom: -6;
+    left: -11px;
+    border-radius: 14px 14px 0 0;
+}
+.leg-fr{
+    bottom: -8;
+    left: 209px;
+    border-radius: 14px 14px 0 0;
+}
+.cow .hoof{
+    background-color: #333;
+    width: 35px;
+    height: 25px;
+    position: absolute;
+    bottom: -10px;
+    left: -2px;
+    border-radius: 6px 8px 2px 2px;
+}
+
+/*** Cow Standing ***/
+.standing .body{
+    border-radius: 120px;
+    transform: rotate(-90deg);
+}
+.standing .face{
+    top: -101px;
+    right: 180px;
+}
+.standing .spot-1{
+    transform: translate(30px, 60px);
+}
+.standing .spot-3{
+    transform: translate(-30px, -60px);
+}
+.standing .leg-bl{
+    transform: translate(100px, 110px);
+}
+.standing .leg-br{
+    transform: translate(160px, 104px);
+}
+.standing .leg-fl{
+    transform: translate(-192px, -115px) rotate(50deg);
+}
+.standing .leg-fr{
+    transform: translate(12px, -122px) rotate(-50deg);
+}
+
+
