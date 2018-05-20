@@ -52,7 +52,6 @@ function createCloudsMarkup(numberOfCloudsRequested) {
 	var clouds = "";
 	// var viewportWidth = $(window).width();
 	var cowCoordinates = $(".face").offset();
-	console.log('Coordinates', cowCoordinates);
 	var faceHeight = typeof cowCoordinates !== 'undefined' ? cowCoordinates.top : 200;
 
 	for (var i = numberOfCloudsRequested; i >= 0; i--) {
