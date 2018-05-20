@@ -1,112 +1,87 @@
-var scene = {
- 	weather: {
-		listeners: {
-			sunListener: function(){
-				$("#sun").click(function(){
-					scene.weather.makeItRain();
-				});
-			},
-			cloudsListener: function(){
-				$(".cloud").click(function(){
-					scene.weather.sunshine();
-				})
-			}
-		},
-		clouds: {
-			createCloudsMarkup: function(numberOfCloudsRequested){
-				var clouds = "";
-				var viewportWidth = $(window).width();
-				var cowCoordinates = $(".face").offset();
-				var faceHeight = typeof cowCoordinates !== 'undefined' ? cowCoordinates.top : 200;
+function initSun() {
+	$("#sun").click(function(){
+		makeItRain();
+	});
+	makeClouds();
+}
+function hideSun() {
+	var sun = $("#sun");
+	sun.off();
+	sun.addClass("hidden");
+}
+function makeItSun() {
+	hideClouds();
 
-				for (var i = numberOfCloudsRequested; i >= 0; i--) {
-					var rightValue = scene.helperFunctions.generateRandomNumber(viewportWidth);
-					var topValue = scene.helperFunctions.generateRandomNumber(faceHeight);
-					var cloud = "<div class='weather-element cloud hidden' style='right:"+rightValue+";top:"+topValue+"'></div>";
-					clouds += cloud;
-				};
+	$('#sun').removeClass("hidden");
+	$('body').removeClass("rainy");
+	$('.pupil').removeClass('startled');
 
-				return clouds;
-			}, 
-			hideClouds: function(){
-				var clouds = $(".cloud");
-				clouds.off();
-				clouds.addClass("hidden");
-			}, 
-			showClouds: function(){
-				$(".cloud").removeClass("hidden");
-				scene.weather.listeners.cloudsListener();
-			},
-			makeClouds: function(){
-				var clouds = scene.weather.clouds.createCloudsMarkup(8);
-				$('.sky').append($(clouds));
-			} 
-		},
-		sun: {
-			hideSun: function(){
-				var sun = $("#sun");
-				sun.off();
-				sun.addClass("hidden");
-			}
-		},
-		makeItRain: function(){
-			scene.weather.sun.hideSun();
+	initSun();
+}
 
-			$("body").addClass("rainy");
-			$('.pupil').addClass('startled');
-			scene.weather.clouds.showClouds();
-		},
-		sunshine: function(){
-			scene.weather.clouds.hideClouds();
+function makeItRain(){
+	hideSun();
 
-			$('#sun').removeClass("hidden");
-			$('body').removeClass("rainy");
-			$('.pupil').removeClass('startled');
+	$("body").addClass("rainy");
+	$('.pupil').addClass('startled');
 
-			scene.weather.listeners.sunListener();
-		},
-		init: function(){
-			scene.weather.clouds.makeClouds();
-			scene.weather.listeners.sunListener();
-			
-		}
-	},
-	helperFunctions: {
-		generateRandomNumber: function(max){
-			var number = 1 + Math.floor(Math.random() * max);
-			return number;
-		}
-	},
-	cow: {
-		listeners: {
-			spotListener: function(){
-				$('.spot').click(function(){
-					scene.cow.actions.stickTongueOut();
-				})
-			}
-		},
-		actions: {
-			stickTongueOut: function(){
-				var tongue = $("#tongue");
+	showClouds();
+}
+function initClouds() {
+	$(".cloud").click(function(){
+		makeItSun();
+	})
+}
+function showClouds() {
+	$(".cloud").removeClass("hidden");
+	initClouds();
+}
+function hideClouds() {
+	var clouds = $(".cloud");
+	clouds.off();
+	clouds.addClass("hidden");
+	setTimeout(function() {
+		clouds.remove();
+	}, 1000);
+}
+function makeClouds() {
+	var clouds = createCloudsMarkup(6);
+	$('.sky').append($(clouds));
+}
+function createCloudsMarkup(numberOfCloudsRequested) {
+	var clouds = "";
+	// var viewportWidth = $(window).width();
+	var cowCoordinates = $(".face").offset();
+	console.log('Coordinates', cowCoordinates);
+	var faceHeight = typeof cowCoordinates !== 'undefined' ? cowCoordinates.top : 200;
 
-				tongue.addClass('out').delay(1000).queue(function(){
-				    $(this).removeClass("out").dequeue();
-				});
-			}, 
-			standUp: function(){
-				$(".cow").addClass("standing");
-			},
-			sitDown: function(){
-				$(".cow").removeClass("standing");
-			}
-		},
+	for (var i = numberOfCloudsRequested; i >= 0; i--) {
+		var rightValue = generateRandomNumber(100);
+		var topValue = generateRandomNumber(faceHeight);
+		var cloud = "<div class='weather-element cloud hidden' style='right:calc("+rightValue+"vw - 7.5vw);top:calc("+topValue+"px - 4vw)'></div>";
+		clouds += cloud;
+	};
+
+	return clouds;
+}
+
+function generateRandomNumber(max) {
+	var number = 1 + Math.floor(Math.random() * max);
+	return number;
+}
 
 
-	},
-	init: function(){
-		scene.weather.init();
-		scene.cow.listeners.spotListener();
-	} 
-};
+function initTongue() {
+	$('.spot').click(function(){
+		$("#tongue").addClass('out').delay(1000).queue(function(){
+			$(this).removeClass("out").dequeue();
+		});
+	})
+}
 
-scene.init();
+function init(){
+	initSun();
+	initTongue();
+}
+
+init();
