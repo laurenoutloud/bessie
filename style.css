@@ -228,6 +228,7 @@ body{
     height: 60%;
     left: -4%;
     border-radius: 50%/40%;
+    z-index: 50;
 }
 .spot-1:after {
     width: 129%;
@@ -309,7 +310,10 @@ body{
     height: 5%;
     position: absolute;
     border-radius: 64% 20% 64% 20%;
-    z-index: -1;
+    z-index: 1; /*Hover doesn't work on negative z-indexes so I modified spot-1 */
+    transition-property: all;
+    transition-duration: 1s;
+    
 }
 .switch {
     background-color: #000;
@@ -318,4 +322,8 @@ body{
     width: 40%;
     height: 350%;
     border-radius: 50% 50% 50% 0%;
+}
+.tail:hover {
+    transform: rotate(30deg);
+    transform-origin: 100% 100%;
 }
